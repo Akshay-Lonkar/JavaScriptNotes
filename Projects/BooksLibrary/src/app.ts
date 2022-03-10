@@ -37,6 +37,13 @@ export default class Application {
             //Load the modules
             await Loader.init();
 
+            if (process.env.NODE_ENV === 'test') {
+                await Loader.databaseConnector.dropDatabase();
+            }
+            
+            //Connect with database
+            await Loader.databaseConnector.init();
+
             //Set-up middlewares
             await this.setupMiddlewares();
 
