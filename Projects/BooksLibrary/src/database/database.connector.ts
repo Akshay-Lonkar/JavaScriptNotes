@@ -1,7 +1,10 @@
+import { Logger } from 'common/logger';
 import { injectable } from 'tsyringe';
 
 @injectable()
 export class DatabaseConnector{
+
+constructor(@inject('IDatabaseConnector') private _db: IDatabaseConnector) {}
 
 public init = async (): Promise<boolean> => {
     try {
